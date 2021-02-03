@@ -1,0 +1,20 @@
+.button {
+    width:150px;
+    height: 40px;
+    background-color: #66cd00;
+    font-size: small;
+    border:1px solid #66cd00;
+    border-radius: 5px;
+    text-align: center;
+    justify-content: center;
+}
+.image {
+    height: 200px;
+} 
+.container{
+    width: 90%;
+    margin: auto;
+}
+.card{
+    margin: 10px 10px;
+}

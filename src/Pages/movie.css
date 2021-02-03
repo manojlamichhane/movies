@@ -1,0 +1,23 @@
+.container2 {
+    padding: 20px 60px;
+}
+.movie2 {
+    padding: 20px 20px;
+    display:flex;
+}
+.image2 {
+    
+    width:100%;
+    height: 500px;
+    margin: auto; 
+}
+.description {
+    padding: 0px 20px
+}
+.description2 {
+    display: flex;
+}
+
+.description2 p {
+    margin: 0;
+}
