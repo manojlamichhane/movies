@@ -2,46 +2,68 @@ import React,{useState,useEffect} from 'react';
 import axios from 'axios';
 import {BASE_URL,API_KEY,IMAGE_BASE_URL} from '../Config';
 import {useParams} from 'react-router-dom';
+import { Badge } from 'reactstrap';
 import './movie.css'
 
 function Movie(props) {
     
-    const [alltrendings,setAllTrendings] = useState([]);
+    const [movie,setMovie] = useState([]);
     const id = useParams("id")
-    console.log(id.id)
     useEffect(()=>{
         getMovie();
     },[])
 
+
     const getMovie = async() =>{
-        const result = await axios.get(`${BASE_URL}/trending/all/day?api_key=${API_KEY}`)
-        
-        setAllTrendings(result.data.results)
+        const result = await axios.get(`${BASE_URL}/movie/${id.id}?api_key=${API_KEY}`)        
+        setMovie(result.data)
+        console.log(movie)
     }
-    console.log(alltrendings)
-    const res=((alltrendings.find((item)=>item.id==id.id)))
-    console.log(res&&res.genre_ids)
+    
     return (
         <div>        
             <div className="container2">
-            <img className ="image2" src={`${IMAGE_BASE_URL}/${res && res.backdrop_path}`}/>
+            <a href={movie.homepage}><img className ="image2" src={`${IMAGE_BASE_URL}/${movie && movie.backdrop_path}`}/></a>
             <div className="movie2">
-            <img style = {{width:"15%"}} src={`${IMAGE_BASE_URL}/${res && res.poster_path}`}/>
+            <img style = {{width:"15%"}} src={`${IMAGE_BASE_URL}/${movie && movie.poster_path}`}/>
             <div className="description">
-                <h5>{res && res.original_title}</h5>
-                <p>{res && res.overview}</p>
+                <h5>{movie && movie.original_title}</h5>
+                <p>{movie && movie.overview}</p>
                 <div className="description2">
-                <div style={{width:"300px"}}>
-                <p>Genre:</p>
-                <p>Actor:</p>
-                <p>Director:</p>
-                <p>Country:</p>
+                <div style={{width:"50%"}}>
+                <p>Genre:
+                {
+                    movie.genres && movie.genres.map((item)=>{
+                        return(
+                          <Badge color="info">{item.name}</Badge>        
+                    )})
+                }    
+                </p>
+                <p>Duration: {movie.runtime} minutes</p>
+                <p>Release:{movie.release_date && movie.release_date.slice(0,4)}</p>
+                <p>Country:
+                    {
+                        movie.production_countries && movie.production_countries.map((item)=>{
+                            return(
+                                <p>{item.name}</p>
+                            )
+                        })
+                    }
+                </p>
                 </div>
-                <div style={{width:"300px"}}>
-                <p>Duration:</p>
-                <p>Quality:</p>
-                <p>Release:{res && res.release_date.slice(0,4)}</p>
-                <p>IMDb:</p>
+                <div style={{width:"50%"}}>
+
+                <p>Production Companies:
+                    {
+                        movie.production_companies && movie.production_companies.map(item=>{
+                            return(
+                            <img style={{width:"5%"}} src={`${IMAGE_BASE_URL}/${item.logo_path}`} alt={item.name}/> 
+                            )                            
+                        })
+                    }
+                </p>
+                
+                <p>IMDb:{movie.imdb_id && movie.imdb_id}</p>
                 </div>
                 </div>
             </div>                

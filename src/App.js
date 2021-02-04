@@ -15,7 +15,6 @@ function App() {
         <Route path="/" exact component={Home}/>
         <Route path="/trending" exact component={Trending}/>
         <Route path="/movies/:id" exact component={Movie}/>
-        
       </Switch>
       </BrowserRouter>
     </div>

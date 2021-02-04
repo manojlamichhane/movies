@@ -1,21 +1,13 @@
 import React, {useState,useEffect} from 'react';
-import {
-    Collapse,Navbar,NavbarToggler,NavbarBrand,
-    Nav,NavItem,NavLink,NavbarText,Row,Col
-  } from 'reactstrap';
+import {Row,Col,Card, CardImg} from 'reactstrap';
 import axios from 'axios'
 import './movie.css'
 import {BASE_URL,API_KEY,IMAGE_BASE_URL} from '../Config'
-import {
-    Card, CardImg
-  } from 'reactstrap';
 import {Link} from 'react-router-dom'
+import CategoryBar from '../Components/CategoryBar'
 
 function Nowplaying(props) {
-    const [isOpen, setIsOpen] = useState(false);
     const [nowplaying,setNowPlaying] = useState([]);
-
-    const toggle = () => setIsOpen(!isOpen);
 
     useEffect(()=>{
         getNowPlaying()
@@ -28,29 +20,9 @@ function Nowplaying(props) {
     }
     return (
         <div className="container">
-        <Navbar color="light" light expand="md">
-        <NavbarBrand className="button">NOW PLAYING</NavbarBrand>
-        <NavbarToggler onClick={toggle} />
-        <Collapse isOpen={isOpen} navbar>
-          <Nav className="mr-auto" navbar>
-            <NavItem>
-              <NavLink>All</NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink>Action</NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink>Thriller</NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink>Romance</NavLink>
-            </NavItem>
-          </Nav>
-          <NavbarText>Logout</NavbarText>
-        </Collapse>
-        </Navbar>
-        <Row>
-        {
+            <CategoryBar name="NOW PLAYING"/>    
+            <Row>
+            {
             nowplaying.map(item=>{
                 return(
                 <Col sm="2">
@@ -60,10 +32,9 @@ function Nowplaying(props) {
                 </Card>
                 </Link>
                 </Col>
-                )
-            })
-        }
-        </Row>
+                )})
+            }
+            </Row>
         </div>
     );
 }
