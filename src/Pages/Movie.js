@@ -4,6 +4,8 @@ import {BASE_URL,API_KEY,IMAGE_BASE_URL} from '../Config';
 import {useParams} from 'react-router-dom';
 import { Badge } from 'reactstrap';
 import './movie.css'
+import Reviews from './Reviews';
+import Similar from './Similar';
 
 function Movie(props) {
     
@@ -17,15 +19,13 @@ function Movie(props) {
     const getMovie = async() =>{
         const result = await axios.get(`${BASE_URL}/movie/${id.id}?api_key=${API_KEY}`)        
         setMovie(result.data)
-        console.log(movie)
     }
     
-    return (
-        <div>        
+    return (        
             <div className="container2">
-            <a href={movie.homepage}><img className ="image2" src={`${IMAGE_BASE_URL}/${movie && movie.backdrop_path}`}/></a>
+            <a href={movie.homepage}><img className ="image2" src={`${IMAGE_BASE_URL}/${movie && movie.backdrop_path}`} alt={movie.original_title}/></a>
             <div className="movie2">
-            <img style = {{width:"15%"}} src={`${IMAGE_BASE_URL}/${movie && movie.poster_path}`}/>
+            <img style = {{width:"15%"}} src={`${IMAGE_BASE_URL}/${movie && movie.poster_path}`} alt={movie.original_title}/>
             <div className="description">
                 <h5>{movie && movie.original_title}</h5>
                 <p>{movie && movie.overview}</p>
@@ -52,7 +52,6 @@ function Movie(props) {
                 </p>
                 </div>
                 <div style={{width:"50%"}}>
-
                 <p>Production Companies:
                     {
                         movie.production_companies && movie.production_companies.map(item=>{
@@ -61,14 +60,14 @@ function Movie(props) {
                             )                            
                         })
                     }
-                </p>
-                
+                </p> 
                 <p>IMDb:{movie.imdb_id && movie.imdb_id}</p>
                 </div>
                 </div>
             </div>                
             </div>
-            </div>
+            <Reviews/>
+            <Similar/>           
         </div>
     );
 }

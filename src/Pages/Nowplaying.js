@@ -1,10 +1,9 @@
 import React, {useState,useEffect} from 'react';
-import {Row,Col,Card, CardImg} from 'reactstrap';
 import axios from 'axios'
 import './movie.css'
-import {BASE_URL,API_KEY,IMAGE_BASE_URL} from '../Config'
-import {Link} from 'react-router-dom'
+import {BASE_URL,API_KEY} from '../Config'
 import CategoryBar from '../Components/CategoryBar'
+import MovieCard from '../Components/MovieCard'
 
 function Nowplaying(props) {
     const [nowplaying,setNowPlaying] = useState([]);
@@ -21,20 +20,7 @@ function Nowplaying(props) {
     return (
         <div className="container">
             <CategoryBar name="NOW PLAYING"/>    
-            <Row>
-            {
-            nowplaying.map(item=>{
-                return(
-                <Col sm="2">
-                <Link to={`/movies/${item.id}`}>
-                <Card>
-                    <CardImg className = "image" src={`${IMAGE_BASE_URL}${item.poster_path}`} alt="Card image cap" />
-                </Card>
-                </Link>
-                </Col>
-                )})
-            }
-            </Row>
+            <MovieCard source={nowplaying}/>
         </div>
     );
 }

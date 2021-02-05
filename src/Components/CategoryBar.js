@@ -1,13 +1,16 @@
 import React,{useState} from 'react';
 import {
     Collapse,Navbar,NavbarToggler,NavbarBrand,
-    Nav,NavItem,NavLink,NavbarText
+    Nav,NavItem,NavLink,Button
   } from 'reactstrap';
 
 
 function CategoryBar(props) {
+    
     const [isOpen, setIsOpen] = useState(false);
     const toggle = () => setIsOpen(!isOpen);
+    
+
     return (
         <div>
         <Navbar color="light" light expand="md">
@@ -28,7 +31,7 @@ function CategoryBar(props) {
               <NavLink>Romance</NavLink>
             </NavItem>
           </Nav>
-          <NavbarText>Logout</NavbarText>
+          <Button color="success">View More</Button>
         </Collapse>
         </Navbar>
         </div>
