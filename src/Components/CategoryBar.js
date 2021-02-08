@@ -9,7 +9,6 @@ function CategoryBar(props) {
     
     const [isOpen, setIsOpen] = useState(false);
     const toggle = () => setIsOpen(!isOpen);
-    
 
     return (
         <div>
@@ -31,7 +30,7 @@ function CategoryBar(props) {
               <NavLink>Romance</NavLink>
             </NavItem>
           </Nav>
-          <Button color="success">View More</Button>
+          <Button color="success" onClick={()=>props.intHandler}>View More</Button>
         </Collapse>
         </Navbar>
         </div>

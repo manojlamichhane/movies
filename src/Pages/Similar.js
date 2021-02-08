@@ -11,9 +11,13 @@ function Similar(props) {
 
     useEffect(async()=>{
         const result = await axios.get(`${BASE_URL}/movie/${id.id}/similar?api_key=${API_KEY}&language=en-US&page=1`)
-        console.log(result.data.results)
         setSimilar(result.data.results)
     },[])
+
+    if(similar.length==0){
+        return<h2 style={{textAlign:"center"}}>No Similar Movies</h2>
+    }
+
     return (
         <div>
             <h2>Similar Movies</h2>

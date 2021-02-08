@@ -11,6 +11,7 @@ function Movie(props) {
     
     const [movie,setMovie] = useState([]);
     const id = useParams("id")
+    
     useEffect(()=>{
         getMovie();
     },[])

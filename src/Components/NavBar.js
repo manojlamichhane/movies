@@ -11,7 +11,7 @@ import {
     NavLink,
     NavbarText
   } from 'reactstrap';
-
+import Apifetched from '../Pages/Apifetched'
 
 function NavBar(props) {
   const [isOpen, setIsOpen] = useState(false);
@@ -28,7 +28,7 @@ function NavBar(props) {
               <Link to="/"><NavLink>Home</NavLink></Link>
             </NavItem>
           </Nav>
-          <NavbarText>Logout</NavbarText>
+          <Apifetched buttonLabel="API FETCHED"/>
         </Collapse>
       </Navbar>
       </div>

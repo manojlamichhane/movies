@@ -5,12 +5,13 @@ import {Link} from 'react-router-dom'
 
 function MovieCard(props) {
     
-    console.log(props.int)
+    const int = props.int
+    console.log(int)
     return (
         <div>
             <Row>
             {
-            props.source.map((item)=>{
+            props.source.slice(0,int).map((item)=>{
             return(    
             <Col sm="2">
             <Link to={`/movies/${item.id}`}>
